@@ -1,0 +1,3 @@
+libmagic-dev
+openjdk-21-jdk
+wget
