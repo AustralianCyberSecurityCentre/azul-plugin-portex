@@ -52,7 +52,7 @@ class AzulPluginPortex(BinaryPlugin):
         command = ["java", "-jar", PORTEX_PATH, "-o", output_path_report, "-p", output_path_image, binary]
         # run portex subprocess
         try:
-            result = subprocess.run(command, capture_output=True, text=True, check=True)  # nosec B603
+            result = subprocess.run(command, capture_output=True, text=True, check=True)  # noqa: S603
             if result.stderr:
                 description = f"Error running Portex subprocess. Reason : {result.stderr}"
                 return State(State.Label.ERROR_EXCEPTION, message=description)
@@ -95,7 +95,7 @@ class AzulPluginPortex(BinaryPlugin):
                             else:
                                 found_peid_sigs = False
             # add the two peid lines together before adding them as features
-            concatenated_list = [l1.strip() + " " + l2.strip() for l1, l2 in zip(compilers, rules)]
+            concatenated_list = [l1.strip() + " " + l2.strip() for l1, l2 in zip(compilers, rules, strict=False)]
             for feature in concatenated_list:
                 self.add_feature_values("peid_signatures", feature)
 
