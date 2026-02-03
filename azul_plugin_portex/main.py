@@ -95,7 +95,7 @@ class AzulPluginPortex(BinaryPlugin):
                             else:
                                 found_peid_sigs = False
             # add the two peid lines together before adding them as features
-            concatenated_list = [l1.strip() + " " + l2.strip() for l1, l2 in zip(compilers, rules)]
+            concatenated_list = [l1.strip() + " " + l2.strip() for l1, l2 in zip(compilers, rules, strict=False)]
             for feature in concatenated_list:
                 self.add_feature_values("peid_signatures", feature)
 
