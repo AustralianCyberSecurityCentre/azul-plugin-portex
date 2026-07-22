@@ -205,10 +205,10 @@ class TestExecute(test_template.TestPlugin):
         mock_process.configure_mock(**attrs)
         subprocess_mock.return_value = mock_process
         state = AzulPluginPortex.run_portex("/a/randomFilePath", "/a/randomReportPath", "a/randomImagePath")
-        if state is None or state.message is None:
-            raise self.failureException("Expected state and state.message to be non-None, got None")
+        self.assertIsNotNone(state)
+        self.assertIsNotNone(state.message)  # ty: ignore[unresolved-attribute]
         expected_message = "Error running Portex subprocess. Reason"
-        self.assertTrue(expected_message in state.message)
+        self.assertTrue(expected_message in state.message)  # ty: ignore[unresolved-attribute, unsupported-operator]
 
     def test_nonascii_stripped(self):
         """Test that when a portex report has non-ascii characters they are correctly
