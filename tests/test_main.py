@@ -205,6 +205,8 @@ class TestExecute(test_template.TestPlugin):
         mock_process.configure_mock(**attrs)
         subprocess_mock.return_value = mock_process
         state = AzulPluginPortex.run_portex("/a/randomFilePath", "/a/randomReportPath", "a/randomImagePath")
+        if state is None or state.message is None:
+            raise self.failureException("Expected state and state.message to be non-None, got None")
         expected_message = "Error running Portex subprocess. Reason"
         self.assertTrue(expected_message in state.message)
 
