@@ -47,7 +47,7 @@ class AzulPluginPortex(BinaryPlugin):
         Feature(name="peid_signatures", desc="PEID signatures found by portex", type=FeatureType.String),
     ]
 
-    def run_portex(binary: bytes, output_path_report: str, output_path_image: str) -> State:
+    def run_portex(binary: str, output_path_report: str, output_path_image: str) -> State | None:
         """Run the portex subprocess."""
         command = ["java", "-jar", PORTEX_PATH, "-o", output_path_report, "-p", output_path_image, binary]
         # run portex subprocess
@@ -99,7 +99,7 @@ class AzulPluginPortex(BinaryPlugin):
             for feature in concatenated_list:
                 self.add_feature_values("peid_signatures", feature)
 
-    def verify_nonascii_stripped(self, output_file: str) -> State:
+    def verify_nonascii_stripped(self, output_file: str) -> State | None:
         """Checks for any non-ascii chars in report. Returns ERROR_EXCEPTION State if found."""
         with open(output_file, "r") as file:
             content = file.read()
