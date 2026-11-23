@@ -206,7 +206,7 @@ class TestExecute(test_template.TestPlugin):
         subprocess_mock.return_value = mock_process
         state = AzulPluginPortex.run_portex("/a/randomFilePath", "/a/randomReportPath", "a/randomImagePath")
         self.assertIsNotNone(state)
-        self.assertIsNotNone(state.message)  # ty: ignore[unresolved-attribute]
+        self.assertIsNotNone(state.message)  # ty: ignore[missing-attribute]
         expected_message = "Error running Portex subprocess. Reason"
         self.assertTrue(expected_message in state.message)  # ty: ignore[unresolved-attribute, unsupported-operator]
 
