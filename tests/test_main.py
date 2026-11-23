@@ -208,7 +208,7 @@ class TestExecute(test_template.TestPlugin):
         self.assertIsNotNone(state)
         self.assertIsNotNone(state.message)  # ty: ignore[missing-attribute]
         expected_message = "Error running Portex subprocess. Reason"
-        self.assertTrue(expected_message in state.message)  # ty: ignore[unresolved-attribute, unsupported-operator]
+        self.assertTrue(expected_message in state.message)  # ty: ignore[missing-attribute, unsupported-operator]
 
     def test_nonascii_stripped(self):
         """Test that when a portex report has non-ascii characters they are correctly
